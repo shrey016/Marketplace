@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Product List</title>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h3>Product List</h3>
+    <hr>
+    <a th:href="@{/showForm}" class="btn btn-primary btn-sm mb-3">Add Product for sale</a>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+        <tr>
+            <th>Product Name</th>
+            <th>Product Image</th>
+            <th>Quantity available</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="tempProduct : ${products}">
+
+            <td th:text="${tempProduct.name}" />
+            <td th:text="${tempProduct.imageUrl}" />
+            <td th:text="${tempProduct.quantity}" />
+            <td th:text="${tempProduct.price}" />
+            <td>
+                <a th:href="@{/buyProduct(productId=${tempProduct.id})}"
+                   class="btn btn-sm"
+                   onclick="if(!confirm('Are you sure you want to buy this product?')) return false">
+                    Buy
+                </a>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>
+
+
+
